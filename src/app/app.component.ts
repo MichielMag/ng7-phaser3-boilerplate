@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { SimpleGame } from 'src/game/simple-game';
 
 import { MainScene } from "../game/scenes/main";
+import { Scale } from 'phaser';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +22,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     title = 'ng7-phaser3-boilerplate';
 
     config : GameConfig = {
-        width: 800,
-        height: 600,
         type: Phaser.CANVAS,
+        scale: {
+            width: 800,
+            autoCenter: Phaser.Scale.CENTER_BOTH,
+            height: 600,
+            mode: Phaser.Scale.RESIZE
+        },
         parent: "game",
         scene: MainScene,
         physics: {

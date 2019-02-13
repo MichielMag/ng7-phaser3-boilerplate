@@ -1,0 +1,48 @@
+#wrapper 
+{
+    width: 100vw;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+#game
+{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+#game > canvas 
+{
+    width: 100%;
+    height: 100%;
+}
+
+#angular-boilerplate
+{
+    position: absolute;
+    z-index: 2;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#angular-container
+{
+    background: url('/assets/FF4D00-0.8.png');
+    width: auto;
+    height: auto;
+    border: 1px solid orangered;
+}

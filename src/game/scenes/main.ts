@@ -11,9 +11,14 @@ export class MainScene extends Scene
 
     preload(): void {
         this.load.image("logo", "/assets/game/phaser.png");
+        
     }
 
     create(): void {
-        this.phaserSprite = this.add.sprite(400, 300, "logo");
+        var width = this.sys.canvas.width;
+        var height = this.sys.canvas.height;
+
+
+        this.phaserSprite = this.add.sprite((width / 2)/* - (this.imageWidth / 2)*/, (height / 2) /*- (this.imageHeight / 2)*/, "logo");
     }
 }
