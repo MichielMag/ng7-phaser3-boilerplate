@@ -3,6 +3,7 @@ import { SimpleGame } from 'src/game/simple-game';
 
 import { MainScene } from "../game/scenes/main";
 import { Scale } from 'phaser';
+import { GameStatsService } from './game-stats.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,16 @@ import { Scale } from 'phaser';
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
+    constructor(private stats : GameStatsService)
+    {
+
+    }
+
     @ViewChild("canvas") el : ElementRef;
 
     game : SimpleGame;
+
+    paused : boolean = true;
 
     ngAfterViewInit(): void {
         this.config.canvas = this.el.nativeElement;
@@ -34,10 +42,16 @@ export class AppComponent implements OnInit, AfterViewInit {
         physics: {
           default: "arcade",
           arcade: {
-            gravity: { y: 200 }
+            gravity: { y: 300 }
           }
         }
       };
     ngOnInit(): void {
+        this.stats.keyPressed.subscribe((key) => {
+            console.log("Key pressed", key);
+            this.keyPressed = key;
+        })
     }
+
+    keyPressed : string = "";
 }
