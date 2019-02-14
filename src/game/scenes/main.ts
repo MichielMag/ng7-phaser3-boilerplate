@@ -5,7 +5,7 @@ export class MainScene extends Scene
 {
     private phaserSprite: Phaser.GameObjects.Sprite;
     private platforms : Phaser.Physics.Arcade.StaticGroup;
-    private player : any;
+    private player : any;// Phaser.Physics.Arcade.Sprite;
 
     private cursors : Phaser.Input.Keyboard.CursorKeys;
     private escape : Phaser.Input.Keyboard.Key;
@@ -13,6 +13,16 @@ export class MainScene extends Scene
     constructor() 
     {
         super("main");
+
+        GameStatsService.instance.keyPressed.subscribe((key) => {
+            if (key === 'gravity_inverse')
+            {
+                if (this.physics.world.gravity.y > 0)
+                    this.physics.world.gravity.y = -900;
+                else
+                    this.physics.world.gravity.y = 300;
+            }
+        });
     }
 
     preload(): void {

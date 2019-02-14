@@ -53,5 +53,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         })
     }
 
+    inverseGravity()
+    {
+        this.stats.emitKey('gravity_inverse');
+    }
+
     keyPressed : string = "";
 }
