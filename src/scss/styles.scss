@@ -1,0 +1,15 @@
+@import '_variables';
+@import '_mixins';
+
+body
+{
+    font-size: 12pt;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+}
+
+ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

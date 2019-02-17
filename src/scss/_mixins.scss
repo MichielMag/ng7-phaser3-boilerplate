@@ -1,0 +1,18 @@
+@mixin center-content-both() 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin center-content-x()
+{
+    display: flex;
+    justify-content: center;
+}
+
+@mixin center-content-y()
+{
+    display: flex;
+    align-items: center;
+}

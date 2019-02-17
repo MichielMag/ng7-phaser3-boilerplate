@@ -4,6 +4,7 @@ import { SimpleGame } from 'src/game/simple-game';
 import { MainScene } from "../game/scenes/main";
 import { Scale } from 'phaser';
 import { GameStatsService } from './game-stats.service';
+import { Score } from 'src/game/domain/score';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     @ViewChild("canvas") el : ElementRef;
 
     game : SimpleGame;
+    score : Score = new Score();
 
-    paused : boolean = true;
+    paused : boolean = false;
 
     ngAfterViewInit(): void {
         this.config.canvas = this.el.nativeElement;
@@ -48,8 +50,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       };
     ngOnInit(): void {
         this.stats.keyPressed.subscribe((key) => {
-            console.log("Key pressed", key);
             this.keyPressed = key;
+        })
+        this.stats.scoreChanged.subscribe((score) => {
+            this.score = score;
         })
     }
 

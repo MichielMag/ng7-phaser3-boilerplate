@@ -24,12 +24,19 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "../node_modules/@mdi/font/fonts", "output": "./" }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@mdi/font/scss/materialdesignicons.scss"
             ],
             "scripts": [],
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src/scss"
+                ]
+            },
             "es5BrowserSupport": true
           },
           "configurations": {

@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import { GameStatsService } from 'src/app/game-stats.service';
+import { Score } from '../domain/score';
 
 export class MainScene extends Scene
 {
@@ -9,6 +10,8 @@ export class MainScene extends Scene
 
     private cursors : Phaser.Input.Keyboard.CursorKeys;
     private escape : Phaser.Input.Keyboard.Key;
+
+    private stars : Phaser.Physics.Arcade.Group;
 
     constructor() 
     {
@@ -68,10 +71,35 @@ export class MainScene extends Scene
         this.player.setCollideWorldBounds(true);
         this.player.body.setGravityY(300);
 
+        this.stars = this.physics.add.group({
+            key: 'star',
+            repeat: 11,
+            setXY: { x: 12, y: 0, stepX: 70 }
+        });
+
+        this.stars.children.iterate(function (child : any) {
+
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        
+        });
+
+        this.physics.add.collider(this.stars, this.platforms);
         this.physics.add.collider(this.player, this.platforms);
+
+        this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+
         this._createAnimations();
         this.cursors = this.input.keyboard.createCursorKeys();
 
+    }
+
+    private collectStar(player, star)
+    {
+        star.disableBody(true, true);
+
+        let score = new Score();
+        score.Stars = 1;
+        GameStatsService.instance.emitScore(score);
     }
 
     private lastKey : string = "";
