@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "wget https://github.com/photonstorm/phaser3-docs/raw/master/typescript/phaser.d.ts -O node_modules/phaser/index.d.ts"
   },
   "private": true,
   "dependencies": {
